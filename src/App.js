@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer.js';
+import {ThemeProvider} from '@mui/material/styles';
+import {theme} from './Theme';
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+import MainPage from './pages/MainPage/MainPage';
+import {Route, Routes} from 'react-router-dom';
+import AboutPage from './pages/AboutPage/AboutPage';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <ThemeProvider theme={theme}>
+            <Header/>
+            <Routes>
+                <Route path='/' element={<MainPage/>}/>
+                <Route path='/:id' element={<AboutPage/>}/>
+            </Routes>
+            <Footer/>
+        </ThemeProvider>
+    );
 }
 
 export default App;
